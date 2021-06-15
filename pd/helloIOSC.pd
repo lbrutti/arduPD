@@ -1,0 +1,30 @@
+#N canvas 151 26 1015 763 10;
+#X obj 333 117 o.io.slipserial;
+#N canvas 0 50 450 278 (subpatch) 0;
+#X array AnalogArray 16 float 2;
+#X coords 0 1023 16 0 200 140 1;
+#X restore 91 322 graph;
+#X obj 267 230 print;
+#X obj 475 252 print;
+#X obj 333 138 mrpeach/unpackOSC;
+#X obj 267 210 spigot;
+#X obj 301 187 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 553 332 cnv 15 400 80 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 762 229 - comport;
+#X text 763 213 - cyclone;
+#X text 763 197 - mrpeach osc slipenc and slipdec;
+#X text 650 153 This patch depends on several third party externals
+available in PD-extended (deprecated?) \, Purr \, or through deken
+plugin (Help -> Find externals):;
+#X msg 567 57 devicename /dev/tty.usbmodem1413201 \, baud 9600 \, pollintervall
+4 \, verbose 1;
+#X obj 334 159 mrpeach/routeOSC /address;
+#X connect 0 0 4 0;
+#X connect 0 0 5 0;
+#X connect 4 0 13 0;
+#X connect 5 0 2 0;
+#X connect 6 0 5 1;
+#X connect 12 0 0 1;
+#X connect 13 1 3 0;

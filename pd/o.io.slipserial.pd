@@ -1,0 +1,14 @@
+#N canvas 618 358 756 268 10;
+#X obj 95 179 mrpeach/slipdec 65536;
+#X obj 95 47 mrpeach/slipenc 65536;
+#X obj 95 22 inlet;
+#X obj 95 206 outlet;
+#X obj 261 46 inlet;
+#X obj 95 135 comport;
+#X obj 134 157 print errors;
+#X connect 0 0 3 0;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 4 0 5 0;
+#X connect 5 0 0 0;
+#X connect 5 1 6 0;
