@@ -1,30 +1,41 @@
 #N canvas 151 26 1015 763 10;
 #X obj 333 117 o.io.slipserial;
-#N canvas 0 50 450 278 (subpatch) 0;
-#X array AnalogArray 16 float 2;
-#X coords 0 1023 16 0 200 140 1;
-#X restore 91 322 graph;
 #X obj 267 230 print;
-#X obj 475 252 print;
-#X obj 333 138 mrpeach/unpackOSC;
+#X obj 314 367 print;
 #X obj 267 210 spigot;
 #X obj 301 187 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 553 332 cnv 15 400 80 empty empty empty 20 12 0 14 -258113 -66577
-0;
 #X text 762 229 - comport;
 #X text 763 213 - cyclone;
 #X text 763 197 - mrpeach osc slipenc and slipdec;
 #X text 650 153 This patch depends on several third party externals
 available in PD-extended (deprecated?) \, Purr \, or through deken
 plugin (Help -> Find externals):;
-#X msg 567 57 devicename /dev/tty.usbmodem1413201 \, baud 9600 \, pollintervall
+#X msg 388 73 devicename /dev/tty.usbmodem1413201 \, baud 9600 \, pollintervall
 4 \, verbose 1;
-#X obj 334 159 mrpeach/routeOSC /address;
-#X connect 0 0 4 0;
-#X connect 0 0 5 0;
-#X connect 4 0 13 0;
-#X connect 5 0 2 0;
-#X connect 6 0 5 1;
-#X connect 12 0 0 1;
-#X connect 13 1 3 0;
+#X obj 333 138 unpackOSC;
+#X obj 337 178 routeOSC /analog;
+#X obj 337 212 routeOSC /0;
+#X obj 388 34 loadbang;
+#N canvas 0 23 450 300 makeArray 0;
+#X obj 60 223 send AnalogArray;
+#X obj 60 120 inlet;
+#X obj 60 142 routeOSC /0;
+#X obj 60 194 cyclone/funnel 1;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 0 0;
+#X restore 498 206 pd makeArray;
+#X obj 439 350 hsl 128 15 0 1024 0 0 empty empty empty -2 -8 0 10 -257985
+-260097 -159808 10009 1;
+#X connect 0 0 3 0;
+#X connect 0 0 10 0;
+#X connect 3 0 1 0;
+#X connect 4 0 3 1;
+#X connect 9 0 0 1;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 11 0 14 0;
+#X connect 12 0 2 0;
+#X connect 12 0 15 0;
+#X connect 13 0 9 0;
