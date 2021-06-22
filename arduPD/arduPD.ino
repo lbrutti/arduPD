@@ -76,6 +76,8 @@ void setup() {
 
   MPR121.setTouchThreshold(touchThreshold);
   MPR121.setReleaseThreshold(releaseThreshold);
+  MPR121.setProxMode(PROX_0_11);
+
 }
 
 
